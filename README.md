@@ -1,19 +1,29 @@
-![itman70s](favicon.ico) AngularJS Movable 
+![itmanTos](favicon.ico) AngularJS Movable 
 ===================
-An angular directive offering a simple way to make your items movable.
+Similarity JavaScript Library for following algorithms: LCS - Longest Common Substring, TCC - Total Common Chars, half-half and smart one.
 
 Demo
 -----------
-See http://itman70s.github.io/angular-movable
+See http://itmanTos.github.io/similarity
 
-Usage
+Methods
 -----------
-* Add a dependency to the ngMovable module in your application.
-``` javascript
-angular.module('app', ['ngMovable']);
-``` 
-* Add attribute directives to your html:
-``` html
- // movable or movable="selector" - jquery selector for closest parent to move
-<div movable class="panel panel-default"> </div>
-``` 
+Similarity.getLcsRate(string1, string2)
+
+returns similarity based on Longest Common Substring in both two strings
+
+
+Similarity.getTccRate(string1, string2)
+
+returns similarity based on common chars in both two strings
+
+
+Similarity.get(string1, string2[, rate1, rate2])
+
+returns similarity based on common chars/longest common substring in both two strings
+
+
+Similarity.getSmartRate(string1, string2[, rate1, rate2, rate3])
+
+returns similarity based on common chars/comon substrings/longest common substring in both two strings
+If need get high precise result more fast, use get function instead.
