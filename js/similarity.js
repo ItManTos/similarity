@@ -85,9 +85,12 @@ var Similarity = function (options) {
 			function __getCCR(s, t) {
 				var n = 0;
 				var len = s.length + t.length;
+				if (s.indexOf(" ") > -1) {
+					s = s.split(/\W+/g);
+				}
 				for (var i = s.length - 1; i > -1; i--) {
 					if (t.indexOf(s[i]) > -1) {
-						n += 2;
+						n += s[i].length * 2;
 						t = t.replace(s[i], "");
 					}
 				}
