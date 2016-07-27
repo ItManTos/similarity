@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>similarity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="similarity, LCS, Levenshtein Distance">
+    <meta name="description" content="This tiny jQuery Bootstrap RichText plugin turns input/textarea into a HTML5 rich text editor">
+	
+	<link rel="icon" type="image/ico" href="./favicon.ico">
+	<link rel='stylesheet' href='./css/bootstrap.min.css' />
+	
+	<script src="./js/similarity.min.js"></script>
+    <script src="../js/ItManTos.menu.js"></script>
+</head>
+
+<body>
+<header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+<div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	<a class="navbar-brand" href="http://ItManTos.github.io/similarity">Similarity</a>
+    </div>
+    <nav id="bs-navbar" class="collapse navbar-collapse">
+	<ul class="nav navbar-nav">
+		<li class="active"><a href="#">Home</a></li>
+		<li><a target="_blank" href="https://github.com/ItManTos/similarity" data-placement="bottom" title="Open in github">[Code]   </a></li>
+		<li><a target="_blank" href="https://github.com/ItManTos/similarity/issues" data-placement="bottom" title="Open in github">[Issues] </a></li>
+		<li><a target="_blank" href="https://github.com/ItManTos/similarity/releases" data-placement="bottom" title="Open in github">[Download] </a></li>
+	</ul>
+	<ul class="nav navbar-nav pull-right">
+		<li class="dropdown">
+          <a href="javascript:;" class="dropdown-toggle ItManTos_menu" data-toggle="dropdown" data-placement="right" title="All about ItManTos.github.io"><img class="pull-left" src="http://ItManTos.github.io/img/logo_w.png"> <b class="caret"></b></a>
+          <ul class="dropdown-menu ItManTos_sub_menu">
+          </ul>
+        </li>
+	</ul>
+    </nav>
+</div>
+</header>
+<div class="container" style="padding-top: 70px;">
+	<div class="jumbotron homepage text-center">
+		<h1>Similarity</h1>
+		<p class="text-left">Similarity JavaScript Library for following algorithms: LCS - Longest Common Substring, . </p>
+	</div>
+	<h1 class="page-header">Examples</h1>
+	<div class="row"><div class="col-md-12">
+	<label class="col-md-6">String1</label><label class="col-md-6">String2</label>
+	</div></div>
+	<div class="row"><div class="col-md-12">
+	<div class="input-group" style="width: 100%">
+		<textarea class="form-control" style="width: 50%" rows=5 id="s">
+Ennis, D. M. (1988). Confusable and discriminable stimuli: Comments on Nosofsky (1986) and Shepard (1986). Journal of Experimental Psychology: General, 117, 408-411.
+		</textarea>
+		<textarea class="form-control" style="width: 50%" rows=5 id="t">
+Ennis, D. M. & Johnson, N. L. (1993). Thurstone-Shepard similarity models as special cases of moment generating functions. Journal of Mathematical Psychology, 37, 104-110.
+		</textarea>
+		</div>
+	</div></div>
+<input type="button" class="btn btn-success pull-right" value="计算" onclick="test()"><br>
+<div id="r"></div>
+	
+	<h1 class="page-header">Methods</h1>
+	<h4>Similarity.getLcsRate(string1, string2) </h4>
+	<p>returns similarity based on Longest Common Substring in both two strings<br><br></p>
+	<h4>Similarity.getTccRate(string1, string2) </h4>
+	<p>returns similarity based on common chars in both two strings<br><br></p>
+	<h4>Similarity.get(string1, string2[, rate1, rate2]) </h4>
+	<p>returns similarity based on common chars/longest common substring in both two strings<br><br></p>
+	<h4>Similarity.getSmartRate(string1, string2[, rate1, rate2, rate3]) </h4>
+	<p>returns similarity based on common chars/comon substrings/longest common substring in both two strings<br> If need get high precise result more fast, use get function instead.<br><br></p>
+	
+  
+<br>
+<br>
+<br>
+
+
+
+<script>
+
+function test(){
+	var s=document.getElementById("s");
+	var t=document.getElementById("t");
+	var r=document.getElementById("r");
+	var now = new Date() - 0;
+	var l= "";
+//	l += "" + Levenshtein_Distance_Percent(s.value,t.value) + "</td><td class='hide'>" + (new Date() - now) + "</td></tr>\n" ;
+	now = new Date() - 0;
+//	l += " levenshtein: " + levenshtein(s.value,t.value) + "</td><td class='hide'>" + (new Date() - now) + "</td></tr>\n" ;
+	now = new Date() - 0;
+	l += "<tr><td>LCS - Longest Common Substring</td><td>getLcsRate</td><td>" + Similarity.getLcsRate(s.value,t.value) + "</td><td class='hide'>" + (new Date() - now) + "</td></tr>\n" ;
+	now = new Date() - 0;
+	l += "<tr><td>TCC - Total Common Chars</td><td>getTccRate</td><td>" + Similarity.getTccRate(s.value,t.value) + "</td><td class='hide'>" + (new Date() - now) + "</td></tr>\n" ;
+	now = new Date() - 0;
+	l += "<tr><td>LCS * 0.5 + TCC * 0.5</td><td>get</td><td>" + Similarity.get(s.value,t.value) + "</td><td class='hide'>" + (new Date() - now) + "</td></tr>\n" ;
+	now = new Date() - 0;
+	l += "<tr><td>LCS * 0.5 + common string slices * 0.2 + TCC * 0.3</td><td>getSmartRate</td><td>" + Similarity.getSmartRate(s.value,t.value) + "</td><td class='hide'>" + (new Date() - now) + "</td></tr>\n" ;
+	
+	r.innerHTML='<div>Similarity Result:</div>\n<table class="well table" style="width: auto;"><tr><th>Method</th><th>Function</th><th>Similarity</th><th class="hide">Cost(ms)</th></tr>\n' + l + "</table>\n";
+};
+test();
+</script>
+
+</div>
+<br><br>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-77708906-1', 'auto');
+  ga('send', 'pageview');
+  
+</script>
+
+</body>
+</html>
